@@ -50,3 +50,14 @@ router.route('/updateEmployee/:id').post(async function (req, response) {
     response.status(400).json({ message: err.message });
   }
 })
+
+router.route('/deleteEmployee/:id').delete(async (req, response) => {
+  let id = req.params.id;
+  try {
+    await Employee.deleteOne({id: id}).then(function() {
+      response.status(200).send({ message: "Successfully Deleted!"})
+    });
+  } catch (err) {
+    response.status(400).json({ message: err.message })
+  }
+})
