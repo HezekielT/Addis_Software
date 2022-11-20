@@ -1,11 +1,14 @@
-const DATABASE_CONNECTION = process.env.DATABASE_URL;
+const mongoose = require("mongoose");
+require("dotenv").config({ path: "./config.env" });
+const Db = process.env.ATLAS_URI;
 
 const connectDB = async () => {
-
-    await mongoose.connect(DATABASE_CONNECTION, {
-        UseNewUrlParser: true,
+    await mongoose.connect(Db, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
     });
-    console.log("Connected to Database")
-}
 
-export default connectDB;
+    console.log("Connected to MongoDB")
+};
+
+module.exports = connectDB;
