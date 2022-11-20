@@ -1,10 +1,18 @@
 const express = require('express');
-const mongoose = require('mongoose')
-const cors = require('cors')
+
+const cors = require("cors");
+const port = process.env.PORT || 5000;
 
 require('dotenv').config();
 
 const app = express();
+const dbo = require("./DB/conn")
 
+app.use(cors);
+app.use(express.json());
 
-app.listen(5000)
+// dbo();
+
+app.listen(port, () => {
+  console.log(`Currently Listening at http://localhost:${port}`)
+})
