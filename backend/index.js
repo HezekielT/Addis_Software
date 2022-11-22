@@ -11,7 +11,7 @@ const dbo = require("./DB/conn")
 app.use(cors);
 app.use(express.json());
 
-// dbo();
+dbo();
 
 app.listen(port, () => {
   console.log(`Currently Listening at http://localhost:${port}`)
