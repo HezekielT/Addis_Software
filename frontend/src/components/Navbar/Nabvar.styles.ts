@@ -7,4 +7,5 @@ export const Nav = styled.nav`
   justify-content: center;
   color: white;
   background-color: hsl(222,47%,11%);
+  width: auto;
 `
