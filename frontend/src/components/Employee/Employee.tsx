@@ -1,5 +1,15 @@
 import React from 'react';
-import { Container, Table, TableData, TableHeader, TableRow } from './Employee.style';
+import { Button,PlusIcon, Container, Table, TableData, TableHeader, TableRow } from './Employee.style';
+import {Edit } from '@styled-icons/boxicons-solid'
+import { Delete} from '@styled-icons/material-outlined'
+
+type EmployeeProps = {
+  id: string,
+  name: string,
+  dob: Date,
+  gender: string,
+  salary: number
+}
 
 const Employee:React.FC = () => {
   return (
@@ -16,22 +26,27 @@ const Employee:React.FC = () => {
           <TableData>Date of Birth</TableData>
           <TableData>Gender</TableData>
           <TableData>Salary</TableData>
-          <TableData>Gender</TableData>
-          <TableData>Salary</TableData>
+          <TableData><Edit /></TableData>
+          <TableData><Delete /></TableData>
         </TableRow>
         <TableRow>
           <TableData>Name</TableData>
           <TableData>Date of Birth</TableData>
           <TableData>Gender</TableData>
           <TableData>Salary</TableData>
+          <TableData><Edit /></TableData>
+          <TableData><Delete /></TableData>
         </TableRow>
         <TableRow>
           <TableData>Name</TableData>
           <TableData>Date of Birth</TableData>
           <TableData>Gender</TableData>
           <TableData>Salary</TableData>
+          <TableData><Edit /></TableData>
+          <TableData><Delete /></TableData>
         </TableRow>
       </Table>
+      <Button><PlusIcon />ADD Employee</Button>
     </Container>
   );
 };
