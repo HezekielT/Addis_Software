@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button,PlusIcon, Container, Table, TableData, TableHeader, TableRow } from './Employee.style';
-import {Edit } from '@styled-icons/boxicons-solid'
-import { Delete} from '@styled-icons/material-outlined'
+import { Button, Container, Table, 
+  TableData, TableHeader, TableRow, DeleteIcon,EditIcon } from './Employee.style';
+import { ManageEmployee } from './ManageEmployee';
+
 
 type EmployeeProps = {
   id: string,
@@ -12,6 +13,13 @@ type EmployeeProps = {
 }
 
 const Employee:React.FC = () => {
+  // const employees = useSelector<EmployeeState, EmployeeState["employees"]>((state) => state.employees)
+  // const dispatch = useDispatch()
+
+  // const onEditEmployee = (employee: EmployeeProps) => {
+  //   dispatch(editEmployee(employee))
+  // }
+
   return (
     <Container>
       <Table>
@@ -21,34 +29,39 @@ const Employee:React.FC = () => {
           <TableHeader>Gender</TableHeader>
           <TableHeader>Salary</TableHeader>
         </TableRow>
+        {/* {employees.map((employee) => {
+          return (
+            <TableRow id={employee.id}>
+              <TableData>{employee.name}</TableData>
+              <TableData>{employee.dob}</TableData>
+              <TableData>{employee.gender}</TableData>
+              <TableData>{employee.salary}</TableData>
+              <TableData onClick={() => onEditEmployee(employee)}><Edit /></TableData>
+              <TableData onClick={() => console.log("clicked by you")}><Delete /></TableData>
+            </TableRow>
+          )
+        })} */}
+        {/* <NewEmployee /> */}
         <TableRow>
-          <TableData>Name</TableData>
-          <TableData>Date of Birth</TableData>
-          <TableData>Gender</TableData>
-          <TableData>Salary</TableData>
-          <TableData><Edit /></TableData>
-          <TableData><Delete /></TableData>
+          <TableData>employee.name</TableData>
+          <TableData>employee.dob</TableData>
+          <TableData>employee.gender</TableData>
+          <TableData>employee.salary</TableData>
+          <TableData><EditIcon /></TableData>
+          <TableData onClick={() => console.log("clicked by you")}><DeleteIcon /></TableData>
         </TableRow>
         <TableRow>
-          <TableData>Name</TableData>
-          <TableData>Date of Birth</TableData>
-          <TableData>Gender</TableData>
-          <TableData>Salary</TableData>
-          <TableData><Edit /></TableData>
-          <TableData><Delete /></TableData>
-        </TableRow>
-        <TableRow>
-          <TableData>Name</TableData>
-          <TableData>Date of Birth</TableData>
-          <TableData>Gender</TableData>
-          <TableData>Salary</TableData>
-          <TableData><Edit /></TableData>
-          <TableData><Delete /></TableData>
+          <TableData>employee.name</TableData>
+          <TableData>employee.dob</TableData>
+          <TableData>employee.gender</TableData>
+          <TableData>employee.salary</TableData>
+          <TableData><EditIcon /></TableData>
+          <TableData onClick={() => console.log("clicked by you")}><DeleteIcon /></TableData>
         </TableRow>
       </Table>
-      <Button><PlusIcon />ADD Employee</Button>
     </Container>
-  );
-};
+  )
+  
+  };
 
 export default Employee;
