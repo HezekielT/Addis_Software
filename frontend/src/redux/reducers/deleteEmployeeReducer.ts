@@ -1,16 +1,15 @@
+import { Delete } from "../actions/employeeAction"
+
 interface EmployeeState {
   employees: string[]
 }
 const initialState = {
-  employees: [],
+  employees: ["string"],
 }
 
-type Action = {type: "ADD_EMPLOYEE"}
-const GET_EMPLOYEES = 'Get_EMPLOYEE'
-
-export default function employees(state:EmployeeState = initialState, action) {
+export default function deleteEmployee(state:EmployeeState = initialState, action:Delete) {
   switch(action.type) {
-    case type.GET_EMPLOYEES:
+    case "DELETE_EMPLOYEE":
       return {
         ...state,
         employees: action.payload
