@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import employees from './reducers/employeeReducer';
+import rootReducer from './reducers';
 
-const store = configureStore({ employees });
+const store = configureStore({ reducer: rootReducer });
 
 export default store;
