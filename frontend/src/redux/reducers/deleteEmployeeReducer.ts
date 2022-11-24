@@ -11,6 +11,7 @@ export default function deleteEmployee(state:EmployeeState = initialState, actio
   switch(action.type) {
     case "DELETE_EMPLOYEE":
       return {
+        // employees.filter()
         ...state,
         employees: action.payload
       }
