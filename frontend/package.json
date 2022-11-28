@@ -17,7 +17,8 @@
     "redux": "^4.2.0",
     "redux-saga": "^1.2.1",
     "styled-components": "^5.3.6",
-    "styled-icons": "^10.46.0"
+    "styled-icons": "^10.46.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",
