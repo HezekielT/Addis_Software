@@ -10,9 +10,8 @@ const employeeSchema = new mongoose.Schema({
     required: [true, "Please Provide name"]
   },
   dateOfBirth: {
-    type: Date,
+    type: String,
     required: true,
-    trim: true,
   },
   gender: {
     type: String,
