@@ -9,7 +9,7 @@ const addApi = () => {
     headers: {
       'Content-Type': 'application/json'
     },
-    // body: Employee
+    // body: employee
   }).then(response => response.json())
   .catch((error) => {throw error})
 }

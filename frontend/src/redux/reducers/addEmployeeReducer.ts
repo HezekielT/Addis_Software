@@ -1,14 +1,12 @@
+import { EmployeeFields } from "../../components/Employee/Employee"
 import { Add } from "../actions/employeeAction"
 
 interface EmployeeState {
-  employees: string[]
+  employees: EmployeeFields[]
 }
 const initialState = {
   employees: [],
 }
-
-type Action = {type: "ADD_EMPLOYEE"}
-const GET_EMPLOYEES = 'Get_EMPLOYEE'
 
 export default function addEmployee(state:EmployeeState = initialState, action:Add) {
   switch(action.type) {
