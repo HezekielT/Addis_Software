@@ -1,24 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Container, Table, 
-  TableData, TableHeader, TableRow, DeleteIcon,EditIcon } from './Employee.style';
+  TableData, TableHeader, TableRow, 
+  DeleteIcon, EditIcon, PlusIcon } from './Employee.style';
+import { useSelector, useDispatch } from 'react-redux';
 import { ManageEmployee } from './ManageEmployee';
+import { GetEmployeesState } from '../../redux/reducers/getEmployeesReducer';
+import { getEmployees } from '../../redux/actions/getEmployeeAction';
 
 
-type EmployeeProps = {
-  id: string,
-  name: string,
-  dob: Date,
-  gender: string,
-  salary: number
+export type EmployeeFields = {
+  id?: string,
+  name?: string,
+  dob?: string,
+  gender?: string,
+  salary?: number,
+  
+}
+export type ResetFunction = {
+  resetRow(val: boolean): void,
 }
 
 const Employee:React.FC = () => {
-  // const employees = useSelector<EmployeeState, EmployeeState["employees"]>((state) => state.employees)
-  // const dispatch = useDispatch()
+  const [editRow, setEditRow] = useState(false)
+  const [addRow, setAddRow] = useState(false)
+  const [eid, setEid] = useState('')
 
-  // const onEditEmployee = (employee: EmployeeProps) => {
-  //   dispatch(editEmployee(employee))
-  // }
+  const changeRow = (empid: string) => {
+    setEditRow(true);
+    setEid(empid);
+  }
+
+  const resetRow = (val : boolean) => {
+    setEditRow(false);
+    setAddRow(false);
+  }
+  const dispatch = useDispatch();
+  const employees = useSelector<GetEmployeesState, GetEmployeesState["employees"]>((state) => state.employees)
+
+
+  useEffect(() => {
+    dispatch(getEmployees())
+  },[])
+
+  console.log(employees,"Employees")
 
   return (
     <Container>
@@ -29,36 +53,31 @@ const Employee:React.FC = () => {
           <TableHeader>Gender</TableHeader>
           <TableHeader>Salary</TableHeader>
         </TableRow>
-        {/* {employees.map((employee) => {
-          return (
-            <TableRow id={employee.id}>
-              <TableData>{employee.name}</TableData>
-              <TableData>{employee.dob}</TableData>
-              <TableData>{employee.gender}</TableData>
-              <TableData>{employee.salary}</TableData>
-              <TableData onClick={() => onEditEmployee(employee)}><Edit /></TableData>
-              <TableData onClick={() => console.log("clicked by you")}><Delete /></TableData>
-            </TableRow>
-          )
-        })} */}
-        {/* <NewEmployee /> */}
-        <TableRow>
-          <TableData>employee.name</TableData>
-          <TableData>employee.dob</TableData>
-          <TableData>employee.gender</TableData>
-          <TableData>employee.salary</TableData>
-          <TableData><EditIcon /></TableData>
-          <TableData onClick={() => console.log("clicked by you")}><DeleteIcon /></TableData>
-        </TableRow>
-        <TableRow>
-          <TableData>employee.name</TableData>
-          <TableData>employee.dob</TableData>
-          <TableData>employee.gender</TableData>
-          <TableData>employee.salary</TableData>
-          <TableData><EditIcon /></TableData>
-          <TableData onClick={() => console.log("clicked by you")}><DeleteIcon /></TableData>
-        </TableRow>
+        {(employees !== undefined) ? (
+          employees.map((employee: EmployeeFields) => {
+            return (
+              (editRow && employee.id === eid) ? (
+                <ManageEmployee id={employee.id} name={employee.name} 
+                dob={employee.dob} gender={employee.gender} 
+                salary={employee.salary} resetRow={resetRow}
+                />
+               ) : (
+                <TableRow id={employee.id}>
+                  <TableData>{employee.name}</TableData>
+                  <TableData>{employee.dob}</TableData>
+                  <TableData>{employee.gender}</TableData>
+                  <TableData>{employee.salary}</TableData>
+                  <TableData onClick={() => employee.id ? changeRow(employee.id) : null}><EditIcon /></TableData>
+                  <TableData onClick={() => console.log("clicked by you")}><DeleteIcon /></TableData>
+                </TableRow>
+               )
+            )
+          })
+        ) : (<label>No Employees found, Please add a new employee</label>)}
+        {/*  */}
+        {(addRow) ? (<ManageEmployee resetRow={resetRow}/>) : (<></>)}
       </Table>
+      <Button onClick={() => { setAddRow(true)}}><PlusIcon />ADD Employee</Button>
     </Container>
   )
   
