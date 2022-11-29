@@ -17,13 +17,13 @@
     "redux": "^4.2.0",
     "redux-saga": "^1.2.1",
     "styled-components": "^5.3.6",
-    "styled-icons": "^10.46.0",
-    "uuid": "^9.0.0"
+    "styled-icons": "^10.46.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@types/styled-components": "^5.1.26",
+    "@types/uuid": "^8.3.4",
     "@vitejs/plugin-react": "^2.2.0",
     "typescript": "^4.6.4",
     "vite": "^3.2.3"
