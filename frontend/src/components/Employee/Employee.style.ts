@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { Edit } from '@styled-icons/boxicons-solid'
 import { Delete} from '@styled-icons/material-outlined'
 import { Save } from '@styled-icons/boxicons-regular';
-import { Cancel } from '@styled-icons/material-outlined'
+import { Cancel } from '@styled-icons/material-outlined';
+import { Plus } from '@styled-icons/bootstrap';
 
 
 export const Container = styled.div`
@@ -65,9 +66,9 @@ width: 25px;
 margin: auto;
 `
 
-// export const PlusIcon = styled(Plus)`
-//   padding: 2px;
-// `
+export const PlusIcon = styled(Plus)`
+  padding: 2px;
+`
 
 // export const EditIcon = styled(Edit)`
 //   width: 5%;
