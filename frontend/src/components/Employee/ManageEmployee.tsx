@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { EmployeeFields, ResetFunction } from "./Employee";
 import { v4 as uuidV4 } from "uuid";
 import { CancelIcon, SaveIcon, TableData, TableRow } from "./Employee.style";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { EmployeesState } from "../../redux/reducers/employeeReducer";
+import { addEmployees, updateEmployee } from "../../redux/actions/employeeActions";
 
 const Input = styled.input`
   padding: 5px;
@@ -40,6 +44,8 @@ export const ManageEmployee: React.FC<EmployeeFields & ResetFunction | never> = 
     salaryField: salary !== undefined ? salary : 0,
   });
 
+  const dispatch = useDispatch();
+  const employees = useSelector<EmployeesState, EmployeesState["employees"]>((state) => state.employees)
 
 
   function updateForm (value: string | number) {
@@ -51,10 +57,25 @@ export const ManageEmployee: React.FC<EmployeeFields & ResetFunction | never> = 
     if(id !== undefined) {
       // this is where i call update action
       console.log(name," -", dob, " -",gender, "-", salary)
+      const employee = {
+        id: id,
+        name: employeeData.nameField,
+        dob: employeeData.dobField,
+        gender: employeeData.genderField,
+        salary: employeeData.salaryField
+      }
+      dispatch(updateEmployee(employee))
     } else {
       const eid = uuidV4();
       // console.log(eid,"-",employeeData.nameField," -", employeeData.dobField, " -",employeeData.genderField, "-", employeeData.salaryField)
-
+      const employee = {
+        id: eid,
+        name: employeeData.nameField,
+        dob: employeeData.dobField,
+        gender: employeeData.genderField,
+        salary: employeeData.salaryField
+      }
+      dispatch(addEmployees(employee))
     }
   }
 
