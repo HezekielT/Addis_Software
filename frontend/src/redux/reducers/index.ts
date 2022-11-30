@@ -1,14 +1,8 @@
 import { combineReducers } from "redux";
-import addEmployee from './addEmployeeReducer';
-import deleteEmployee from "./deleteEmployeeReducer";
-import getEmployees from "./getEmployeesReducer";
-import updateEmployee from "./updateEmployeeReducer";
+import processEmployeeData from "./employeeReducer"
 
 const rootReducer = combineReducers({
-  addEmployees: addEmployee,
-  updateEmployee: updateEmployee,
-  deleteEmployee: deleteEmployee,
-  getEmployees: getEmployees
+  processEmployeeData: processEmployeeData,
 })
 
 export default rootReducer;
