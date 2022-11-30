@@ -13,6 +13,7 @@ export default function processEmployeeData(
   action:GET_EMPLOYEES | ADD_EMPLOYEES | UPDATE_EMPLOYEES | 
   DELETE_EMPLOYEE) {
   
+  console.log("payload",action.payload)
   switch(action.type) {
     case "GET_EMPLOYEES":
       return {
@@ -22,7 +23,7 @@ export default function processEmployeeData(
     case "ADD_EMPLOYEE":
       return {
         ...state,
-        employees: [...state.employees, action.payload]
+        employees: state.employees !== undefined ? [...state.employees, action.payload] : [action.payload]
       }
     case "UPDATE_EMPLOYEE":
       return {
