@@ -81,17 +81,39 @@ export const ManageEmployee: React.FC<EmployeeFields & ResetFunction | never> = 
 
   return (
     <TableRow>
-      <TableData><Input type="text" value={employeeData.nameField} placeholder={name ? name : "name"} onChange={(e) => updateForm(employeeData.nameField = e.target.value)}/></TableData>
-      <TableData><Input type="date" value={employeeData.dobField} placeholder={dob ? dob : "dob"} onChange={(e) => updateForm(employeeData.dobField = e.target.value)}/></TableData>
+      <TableData>
+        <Input type="text" 
+        value={employeeData.nameField} 
+        placeholder={name ? name : "name"} 
+        onChange={(e) => updateForm(employeeData.nameField = e.target.value)}
+        />
+      </TableData>
+      <TableData>
+        <Input type="date" 
+        placeholder={dob ? dob : "dob"} 
+        value={employeeData.dobField} 
+        onChange={(e) => updateForm(employeeData.dobField = e.target.value)}
+        />
+      </TableData>
       <TableData>
         <Select onChange={(e) => updateForm(employeeData.genderField = e.target.value)}>
           <option value="male" selected={gender && gender==='male' ? true : false}>MALE</option>
           <option value="female" selected={gender && gender==='female' ? true : false}>FEMALE</option>
         </Select>
       </TableData>
-      <TableData><Input type="Number" placeholder={salary?.toString()} value={employeeData.salaryField} onChange={(e) => updateForm(employeeData.salaryField = Number(e.target.value))}/></TableData>
-      <TableData><SaveIcon onClick={() => saveEmployeeData()}/></TableData>
-      <TableData><CancelIcon onClick={() => {resetRow(false) }}/></TableData>
+      <TableData>
+        <Input type="Number" 
+        placeholder={salary?.toString()} 
+        value={employeeData.salaryField} 
+        onChange={(e) => updateForm(employeeData.salaryField = Number(e.target.value))}
+        />
+      </TableData>
+      <TableData>
+        <SaveIcon onClick={() => saveEmployeeData()}/>
+      </TableData>
+      <TableData>
+        <CancelIcon onClick={() => {resetRow(false) }}/>
+      </TableData>
     </TableRow>
   )
 }
