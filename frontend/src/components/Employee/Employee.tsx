@@ -68,7 +68,7 @@ const Employee:React.FC = () => {
                   <TableData>{employee.gender}</TableData>
                   <TableData>{employee.salary}</TableData>
                   <TableData onClick={() => employee.id ? changeRow(employee.id) : null}><EditIcon /></TableData>
-                  <TableData onClick={() => dispatch(deleteEmployee(employee.id))}><DeleteIcon /></TableData>
+                  <TableData onClick={() => employee.id ? dispatch(deleteEmployee(employee.id)) : null}><DeleteIcon /></TableData>
                 </TableRow>
                )
             )
