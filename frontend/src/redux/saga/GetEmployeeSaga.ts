@@ -1,8 +1,8 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { AnyAction } from 'redux';
+import { call, CallEffect, put, PutEffect, takeEvery } from 'redux-saga/effects';
 import { EmployeeFields } from '../../components/Employee/Employee';
 
 const fetchApiUrl = `http://localhost:5000/getEmployees`;
-const deleteApiUrl = `http://localhost:5000/deleteEmployee`;
 
 // Fetch employees
 const getEmployeesList = () => {
@@ -15,9 +15,10 @@ const getEmployeesList = () => {
   .catch((error) => {throw error})
 }
 
-export function* fetchEmployees() {
+export function* fetchEmployees():
+Generator<CallEffect<EmployeeFields[]> | PutEffect<AnyAction>, void, EmployeeFields > {
   try{
-    const employees: EmployeeFields[] = yield call(getEmployeesList);
+    const employees = yield call(getEmployeesList);
     yield put({type: 'GET_EMPLOYEES', employees: employees})
   } catch(e: any) {
     yield put({ type: 'GET_EMPLOYEES_FAILED', message: e.message})
