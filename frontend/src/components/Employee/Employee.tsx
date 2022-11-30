@@ -4,8 +4,8 @@ import { Button, Container, Table,
   DeleteIcon, EditIcon, PlusIcon } from './Employee.style';
 import { useSelector, useDispatch } from 'react-redux';
 import { ManageEmployee } from './ManageEmployee';
-import { GetEmployeesState } from '../../redux/reducers/getEmployeesReducer';
-import { getEmployees } from '../../redux/actions/getEmployeeAction';
+import { deleteEmployee, getEmployees } from '../../redux/actions/employeeActions';
+import { EmployeesState } from '../../redux/reducers/employeeReducer';
 
 
 export type EmployeeFields = {
@@ -35,7 +35,7 @@ const Employee:React.FC = () => {
     setAddRow(false);
   }
   const dispatch = useDispatch();
-  const employees = useSelector<GetEmployeesState, GetEmployeesState["employees"]>((state) => state.employees)
+  const employees = useSelector<EmployeesState, EmployeesState["employees"]>((state) => state.employees)
 
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const Employee:React.FC = () => {
                   <TableData>{employee.gender}</TableData>
                   <TableData>{employee.salary}</TableData>
                   <TableData onClick={() => employee.id ? changeRow(employee.id) : null}><EditIcon /></TableData>
-                  <TableData onClick={() => console.log("clicked by you")}><DeleteIcon /></TableData>
+                  <TableData onClick={() => dispatch(deleteEmployee(employee.id))}><DeleteIcon /></TableData>
                 </TableRow>
                )
             )
