@@ -13,9 +13,8 @@ export default function processEmployeeData(
   action:GET_EMPLOYEES | ADD_EMPLOYEES | UPDATE_EMPLOYEES | 
   DELETE_EMPLOYEE) {
   
-  console.log("payload",action.payload)
-  switch(action.type) {
-    case "GET_EMPLOYEES":
+    switch(action.type) {
+      case "GET_EMPLOYEES":
       return {
         ...state,
         employees: action.payload 
