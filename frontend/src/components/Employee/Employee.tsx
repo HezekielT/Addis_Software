@@ -40,6 +40,7 @@ const Employee:React.FC = () => {
 
   useEffect(() => {
     dispatch(getEmployees())
+    console.log("inside useEffect")
   },[])
 
   console.log(employees,"Employees")
