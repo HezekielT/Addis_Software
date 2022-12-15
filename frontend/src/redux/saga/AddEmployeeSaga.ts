@@ -1,34 +1,50 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { AnyAction } from 'redux';
-import { call, CallEffect, put, PutEffect, takeEvery } from 'redux-saga/effects';
+import { call, CallEffect, fork, ForkEffect, put, PutEffect, takeEvery } from 'redux-saga/effects';
 import { EmployeeFields } from '../../components/Employee/Employee';
 
-const addApiUrl = `http://localhost:5000/addEmployee`;
+import axios, { AxiosPromise } from 'axios';
+const addApiUrl = "http://localhost:5000/addEmployee"; 
 
-// Add employee
 
-const addEmployeeData = (data: EmployeeFields) => {
-  return fetch(addApiUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  }).then(response => response.json())
-  .catch((error) => {throw error})
-}
+// Add employee xaiAqAWJgyVaK91N
 
-export function* addEmployee(action: PayloadAction<EmployeeFields>): 
-Generator<CallEffect<EmployeeFields> | PutEffect<AnyAction>, void, EmployeeFields > {
+// const addData = async (data: EmployeeFields) => {
+//   // axios.request, {
+//   //   url: `${addApiUrl}`,
+//   //   method: "post",
+//   //   data: data
+//   // }
+//   console.log("Just so you know", data)
+//   await axios.post("http://localhost:5000/addEmployee", data)
+//     .then(response => {console.log(response.data.data)})
+// }
+
+function* addEmployee(action: PayloadAction<EmployeeFields>):
+ Generator<CallEffect<any> | void | void>{
   const { payload } = action;
-  try{
-    const employees = yield call(addEmployeeData, payload);
-    yield put({type: 'ADD_EMPLOYEES', payload: employees})
-  } catch(e: any) {
-    yield put({ type: 'ADD_EMPLOYEE_FAILED', message: e.message})
+  try {
+
+    console.log("typeof",typeof payload);
+    const res: any = yield addData(payload)
+    console.log(res.next())
+    console.log("Hahaha")
+    // yield put({type: 'ADD_EMPLOYEE', payload: payload})
+  } catch(e){
+    console.log("error")
   }
+
 }
 
-export function* watchAddEmployee() {
+function* watchAddEmployee() {
   yield takeEvery('ADD_EMPLOYEE', addEmployee)
+}
+
+
+export default watchAddEmployee;
+
+function* addData(payload: EmployeeFields) {
+  // throw new Error('Function not implemented.');
+  axios.post("http://localhost:5000/addEmployee", payload)
+    .then(response => {console.log(response.data.data)})
 }
