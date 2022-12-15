@@ -2,7 +2,7 @@ import { EmployeeFields } from "../../components/Employee/Employee"
 import { ADD_EMPLOYEES, DELETE_EMPLOYEE, GET_EMPLOYEES, UPDATE_EMPLOYEES } from "./types"
 
 export const getEmployees = () => ({
-  type: "GET_EMPLOYEES"
+  type: "GET_EMPLOYEES",
 })
 
 export const addEmployees = (employee: EmployeeFields): ADD_EMPLOYEES => ({
