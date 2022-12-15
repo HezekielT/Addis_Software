@@ -8,10 +8,12 @@ require('dotenv').config();
 const app = express();
 const dbo = require("./DB/conn")
 
+dbo();
 app.use(cors);
 app.use(express.json());
+app.use('/',require('./routes/employee'));
 
-dbo();
+
 
 app.listen(port, () => {
   console.log(`Currently Listening at http://localhost:${port}`)
