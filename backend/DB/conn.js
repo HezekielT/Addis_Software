@@ -6,9 +6,11 @@ const connectDB = async () => {
     await mongoose.connect(Db, {
         useNewUrlParser: true,
         useUnifiedTopology: true
+    }).then(() => {
+
+        console.log("Connected to MongoDB")
     });
 
-    console.log("Connected to MongoDB")
 };
 
 module.exports = connectDB;
