@@ -8,6 +8,9 @@ import { useSelector } from "react-redux";
 import { EmployeesState } from "../../redux/reducers/employeeReducer";
 import { addEmployees, updateEmployee } from "../../redux/actions/employeeActions";
 
+import axios from 'axios';
+const addApiUrl = "http://localhost:5000/addEmployee";
+
 const Input = styled.input`
   padding: 5px;
   margin-right: 10px;
@@ -45,7 +48,7 @@ export const ManageEmployee: React.FC<EmployeeFields & ResetFunction | never> = 
   });
 
   const dispatch = useDispatch();
-  const employees = useSelector<EmployeesState, EmployeesState["employees"]>((state) => state.employees)
+  // const employees = useSelector<EmployeesState, EmployeesState["employees"]>((state) => state.employees)
 
 
   function updateForm (value: string | number) {
@@ -53,7 +56,7 @@ export const ManageEmployee: React.FC<EmployeeFields & ResetFunction | never> = 
       return { ...prev, value};
     });
   }
-  const saveEmployeeData = () => {
+  const saveEmployeeData = async () => {
     if(id !== undefined) {
       // this is where i call update action
       console.log(name," -", dob, " -",gender, "-", salary)
@@ -67,15 +70,27 @@ export const ManageEmployee: React.FC<EmployeeFields & ResetFunction | never> = 
       dispatch(updateEmployee(employee))
     } else {
       const eid = uuidV4();
-      // console.log(eid,"-",employeeData.nameField," -", employeeData.dobField, " -",employeeData.genderField, "-", employeeData.salaryField)
+      console.log(eid,"-",employeeData.nameField," -", employeeData.dobField, " -",employeeData.genderField, "-", employeeData.salaryField)
       const employee = {
-        id: eid,
+        id: eid.toString(),
         name: employeeData.nameField,
         dob: employeeData.dobField,
         gender: employeeData.genderField,
         salary: employeeData.salaryField
       }
       dispatch(addEmployees(employee))
+    //   console.log(employee," is employee")
+    //   const saveData = async () => {
+    //     try {
+    //       const responsedata = await axios.post(addApiUrl, {
+    //         employee
+    //       })
+    //       console.log(responsedata,"if ...")
+    //     } catch (error: any) 
+    //       {console.log(error)}
+    // }
+  
+  // saveData()
     }
   }
 
