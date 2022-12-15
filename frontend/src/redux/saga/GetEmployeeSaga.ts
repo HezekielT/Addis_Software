@@ -15,17 +15,19 @@ const getEmployeesList = () => {
   .catch((error) => {throw error})
 }
 
-export function* fetchEmployees():
+function* getEmployees():
 Generator<CallEffect<EmployeeFields[]> | PutEffect<AnyAction>, void, EmployeeFields > {
   try{
     const employees = yield call(getEmployeesList);
+    console.log("This is a call", employees)
     yield put({type: 'GET_EMPLOYEES', employees: employees})
   } catch(e: any) {
     yield put({ type: 'GET_EMPLOYEES_FAILED', message: e.message})
   }
 }
 
-export function* watchFetchEmployee() {
-  yield takeEvery('GET_EMPLOYEES', fetchEmployees)
+function* watchFetchEmployee() {
+  yield takeEvery('GET_EMPLOYEES', getEmployees)
 }
 
+export default watchFetchEmployee;
