@@ -1,6 +1,6 @@
 import { EmployeeFields } from "../../components/Employee/Employee"
 import { ADD_EMPLOYEES, DELETE_EMPLOYEE, GET_EMPLOYEES, UPDATE_EMPLOYEES } from '../actions/types'
-
+// employee reducer
 export interface EmployeesState {
   employees: EmployeeFields[]
 }
